@@ -95,27 +95,50 @@ package
 			label.text=key.toString();
 			
 			 label.text="x: " + this.triangle.x.toString()  + " y:" + this.triangle.y.toString();
+			 
+			
+			
+			
 			
 			switch(event.keyCode){
 				
 				//left
 				case 37 :												
+				
+				if ( this.LimitIsValid(triangle.x--, triangle.y, triangle)){
 				this.triangle.x--;						
+				}
+				 
+				
 				break;
 				
 				//up
 				case 38:				
+				
+				if (this.LimitIsValid(triangle.x, triangle.y--, triangle)){
 				this.triangle.y--;
+				}
+				
+				
 				break;
 				
 				//right
 				case 39:
+				
+				if (this.LimitIsValid(triangle.x++, triangle.y, triangle)){
 				this.triangle.x++;
+				}
+				
+				
 				break;
 				
 				//down
 				case 40:				
+				
+				if ( this.LimitIsValid(triangle.x, triangle.y++, triangle)){
 				 this.triangle.y++;
+				}
+				
 				 break;
 				
 			
@@ -152,20 +175,18 @@ package
 		
 		
 		private function LimitIsValid(positionX: Number , positionY: Number, currentShape : Shape): Boolean {
-			
-			
-			var isValid: Boolean= false;
+			 
 			
 			if  ((positionX + currentShape.width > stage.stageWidth) || (positionY + currentShape.height> stage.stageHeight ) ) {
 				label.text= "Shape is on edge..."
 				
-				isValid= false;
+				return false;
 			}
 			else{
-				isValid= true;
+				return true;
 			}
 			
-			return isValid
+			 
 			
 		}
 		
