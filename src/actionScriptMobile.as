@@ -65,6 +65,7 @@ package
 			triangle= new Shape();
 			
 			
+			
 			triangle.graphics.beginFill(0x0000CC);
 			triangle.graphics.moveTo(triangleHeight/2,0);
 			
@@ -97,7 +98,7 @@ package
 			 label.text="x: " + this.triangle.x.toString()  + " y:" + this.triangle.y.toString();
 			 
 			
-			
+			 
 			
 			
 			switch(event.keyCode){
@@ -105,7 +106,7 @@ package
 				//left
 				case 37 :												
 				
-				if ( this.LimitIsValid(triangle.x--, triangle.y, triangle)){
+				if ( this.LimitIsValid(triangle.x-1, triangle.y, triangle)){
 				this.triangle.x--;						
 				}
 				 
@@ -115,7 +116,7 @@ package
 				//up
 				case 38:				
 				
-				if (this.LimitIsValid(triangle.x, triangle.y--, triangle)){
+				if (this.LimitIsValid(triangle.x, triangle.y-1, triangle)){
 				this.triangle.y--;
 				}
 				
@@ -125,7 +126,7 @@ package
 				//right
 				case 39:
 				
-				if (this.LimitIsValid(triangle.x++, triangle.y, triangle)){
+				if (this.LimitIsValid(triangle.x+1, triangle.y, triangle)){
 				this.triangle.x++;
 				}
 				
@@ -135,7 +136,7 @@ package
 				//down
 				case 40:				
 				
-				if ( this.LimitIsValid(triangle.x, triangle.y++, triangle)){
+				if ( this.LimitIsValid(triangle.x, triangle.y+1, triangle)){
 				 this.triangle.y++;
 				}
 				
@@ -176,6 +177,12 @@ package
 		
 		private function LimitIsValid(positionX: Number , positionY: Number, currentShape : Shape): Boolean {
 			 
+			trace("x: " + positionX + " y: " + positionY);
+			
+			if (positionX<=0 || positionY <=0){
+				trace("minor than 0");
+				return false;
+			}
 			
 			if  ((positionX + currentShape.width > stage.stageWidth) || (positionY + currentShape.height> stage.stageHeight ) ) {
 				label.text= "Shape is on edge..."
